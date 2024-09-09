@@ -1,0 +1,24 @@
+{
+  "name": "kanastra_desafio",
+  "version": "1.0.0",
+  "description": "Sistema de Cobranças",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon"
+  },
+  "author": "Gabriel Dreux",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
