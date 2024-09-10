@@ -2,10 +2,11 @@
   "name": "kanastra_desafio",
   "version": "1.0.0",
   "description": "Sistema de Cobranças",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "test",
-    "dev": "nodemon"
+    "build": "tsc",
+    "dev": "nodemon",
+    "start": "node dist/index.js"
   },
   "author": "Gabriel Dreux",
   "license": "ISC",

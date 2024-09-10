@@ -13,7 +13,7 @@ export class BoletoService {
   static generateBoleto(data: BoletoData): void {
     const { nome, valor, dataVencimento, email } = data;
 
-    
+
     if (!nome || !valor || !dataVencimento || !email) {
       Logger.error('Dados do boleto inválidos. Verifique os campos fornecidos.');
       return;
@@ -43,3 +43,4 @@ export class BoletoService {
     }
   }
 }
+
