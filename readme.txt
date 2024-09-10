@@ -69,3 +69,9 @@ Para criar e iniciar um container a partir da imagem, use:
 
 docker run -d -p 3000:3000 kanastra-server-imagem
 
+
+
+Testar a API
+Para testar a funcionalidade de geração de boletos, faça um GET na rota api/gerar-boleto:
+
+curl http://localhost:3000/api/gerar-boletos
