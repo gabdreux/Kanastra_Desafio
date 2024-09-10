@@ -40,7 +40,7 @@ Instalação
 
 Clone o repositório:
 
-git clone https://github.com/usuario/repo.git
+git clone https://github.com/gabdreux/Kanastra_Desafio.git
 cd repo
 
 
