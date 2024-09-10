@@ -9,10 +9,29 @@ interface BoletoData {
 export abstract class BoletoService {
 
   static generateBoleto(data: BoletoData): void {
-    const { nome, valor, dataVencimento } = data;
-    const timestamp = new Date().toISOString();
+    try {
+      const { nome, valor, dataVencimento } = data;
 
-    Logger.info(`Boleto gerado para: ${nome}, valor: ${valor}, vencimento: ${dataVencimento}, data: ${timestamp}`);
+      if (!nome || typeof nome !== 'string' || nome.trim() === '') {
+        throw new Error('Nome inválido.');
+      }
+      if (isNaN(valor) || valor <= 0) {
+        throw new Error('Valor inválido.');
+      }
+      if (!dataVencimento || isNaN(Date.parse(dataVencimento))) {
+        throw new Error('Data de vencimento inválida.');
+      }
+
+      const timestamp = new Date().toISOString();
+      
+      Logger.info(`Boleto gerado para: ${nome}, valor: ${valor}, vencimento: ${dataVencimento}, data: ${timestamp}`);
+
+    } catch (error) {
+      if (error instanceof Error) {
+        Logger.error(`Erro ao gerar boleto: ${error.message}`);
+      } else {
+        Logger.error('Erro desconhecido ao gerar boleto.');
+      }
+    }
   }
-  
 }
