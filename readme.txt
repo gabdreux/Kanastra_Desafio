@@ -41,12 +41,25 @@ Instalação
 Clone o repositório:
 
 git clone https://github.com/gabdreux/Kanastra_Desafio.git
-cd repo
+cd Kanastra_Desafio
 
 
 Instale as dependências:
 
 npm install
+
+
+Preparar o Ambiente
+
+
+No diretório raiz do projeto, crie uma pasta chamada uploads:
+
+mkdir uploads
+
+
+Adicione o arquivo CSV:
+
+Coloque o arquivo input.csv fornecido no desafio dentro da pasta uploads.
 
 
 Para iniciar o servidor em modo de desenvolvimento:
