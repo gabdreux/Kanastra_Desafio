@@ -1,37 +1,30 @@
 import { Logger } from '../utils/logger';
+import { processedBoletoService } from './processedBoletoService';
+import { v4 as uuidv4 } from 'uuid'; 
 
 interface BoletoData {
   nome: string;
   valor: number;
   dataVencimento: string;
+  email: string;
 }
 
-export abstract class BoletoService {
-
+export class BoletoService {
   static generateBoleto(data: BoletoData): void {
-    try {
-      const { nome, valor, dataVencimento } = data;
+    const { nome, valor, dataVencimento, email } = data;
+    const boletoId = uuidv4();
 
-      if (!nome || typeof nome !== 'string' || nome.trim() === '') {
-        throw new Error('Nome inválido.');
-      }
-      if (isNaN(valor) || valor <= 0) {
-        throw new Error('Valor inválido.');
-      }
-      if (!dataVencimento || isNaN(Date.parse(dataVencimento))) {
-        throw new Error('Data de vencimento inválida.');
-      }
-
-      const timestamp = new Date().toISOString();
-      
-      Logger.info(`Boleto gerado para: ${nome}, valor: ${valor}, vencimento: ${dataVencimento}, data: ${timestamp}`);
-
-    } catch (error) {
-      if (error instanceof Error) {
-        Logger.error(`Erro ao gerar boleto: ${error.message}`);
-      } else {
-        Logger.error('Erro desconhecido ao gerar boleto.');
-      }
+    if (processedBoletoService.isBoletoProcessed(boletoId)) {
+      Logger.info(`Boleto já processado: ${boletoId}`);
+      return;
     }
+
+
+    Logger.info(`Gerando boleto para: ${nome}, valor: ${valor}, vencimento: ${dataVencimento}`);
+    
+    processedBoletoService.addBoleto({ id: boletoId, nome, valor, email });
+
+    // Logger.info(`Boleto gerado e adicionado à lista de processados: ${boletoId}`);
   }
 }
+

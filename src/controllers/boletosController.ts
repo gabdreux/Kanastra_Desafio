@@ -5,12 +5,11 @@ import { BoletoService } from '../services/boletoService';
 import { EmailService } from '../services/emailService';
 import path from 'path';
 
-
-
 export const generateBoletosAndSendEmails = async (req: Request, res: Response): Promise<void> => {
   try {
 
     const filePath = path.resolve(__dirname, '../../uploads/input.csv');
+
     const csvData = await processCsvFile(filePath);
 
     for (const data of csvData) {
@@ -18,6 +17,7 @@ export const generateBoletosAndSendEmails = async (req: Request, res: Response):
         nome: data.name,
         valor: parseFloat(data.debtAmount),
         dataVencimento: data.debtDueDate,
+        email: data.email
       };
 
       BoletoService.generateBoleto(boletoData);
@@ -28,7 +28,6 @@ export const generateBoletosAndSendEmails = async (req: Request, res: Response):
         message: `Olá ${data.name}, seu boleto de R$ ${boletoData.valor} com vencimento em ${boletoData.dataVencimento} foi gerado.`,
       });
     }
-
 
     res.status(200).send({ message: 'Boletos gerados e e-mails enviados com sucesso!' });
 
