@@ -35,3 +35,10 @@ Thumbs.db
 
 # Windows system files
 Thumbs.db
+
+
+# Ignorar a pasta de uploads
+/uploads/
+
+# Ignorar a pasta de logs
+/logs/
